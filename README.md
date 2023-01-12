@@ -1,14 +1,14 @@
 # WebCard_single_page_app
 
-##Build
+## Build
 docker-compose up -d --build<br/>
 
-##Technologies
+## Technologies
 VueJs [Javascript + VueJs]<br/>
 Backend [Python + FastApi]<br/>
 Database [Postgres]<br/>
 
-##Urls
+## Urls
 Backend container url:<br/> 
   http://localhost:8000/api/contacts <br/>
   http://localhost:8000/api/contact/create<br/>
