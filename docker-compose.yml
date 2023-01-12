@@ -1,0 +1,61 @@
+version: "3"
+
+services:
+
+  # webserver:
+  #   image: nginx
+  #   volumes:
+  #     - ./default.conf:/etc/nginx/conf.d/default.conf
+  #   depends_on:
+  #     - backend
+  #     - frontend
+  #   ports:
+  #   - "80:80"
+  #   networks:
+  #     - myweb
+
+  backend:
+    build: backend
+    environment:
+      POSTGRES_HOST: "db"
+      POSTGRES_DB: "webcard"
+      POSTGRES_USER: "pguser"
+      POSTGRES_PASSWORD: "pgkalmatmlgh3032810"
+      POSTGRES_PORT: "5432"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - myweb
+
+  db:
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_HOST: "db"
+      POSTGRES_DB: "webcard"
+      POSTGRES_USER: "pguser"
+      POSTGRES_PASSWORD: "pgkalmatmlgh3032810"
+      POSTGRES_PORT: "5432"
+    volumes:
+      - .:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    networks:
+      - myweb
+    
+  frontend:
+    build: frontend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - backend
+    networks:
+      - myweb
+
+volumes:
+  postgres_data:
+
+networks:
+  myweb:
+    driver: bridge
