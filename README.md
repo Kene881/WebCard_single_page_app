@@ -4,7 +4,7 @@
 docker-compose up -d --build<br/>
 
 ## Technologies
-VueJs [Javascript + VueJs]<br/>
+Frontend [Javascript + VueJs]<br/>
 Backend [Python + FastApi]<br/>
 Database [Postgres]<br/>
 
